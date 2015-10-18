@@ -6,3 +6,12 @@
  * add more specific styles. 
  */
 
+body {background-color: #6B8E23;}
+h6 {font-size: 8pt; margin-top: 5px; margin-left: 3px; text-align: center;}
+input[type=radio] { display: inline; height: 1em;}
+.inner-color {background-color: #FFFFFF;}
+.top-buffer { margin-top:30px; }
+.top-buffer-head { margin-top:50px; }
+.top-buffer-inner { margin-top:10px;}
+.center-text {text-align:center;}
+/*.radio {height: 1em; display: inline;}*/

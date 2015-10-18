@@ -1,0 +1,12 @@
+Test cases:
+
+- All distances > previous distance
+	prevDist = 0
+	newDist >= prevDist
+
+- All distances <= total brevet
+	newDist <= brevDist += 10%
+
+- Correct calculation
+
+- 

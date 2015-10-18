@@ -52,6 +52,32 @@ def page_not_found(error):
     flask.session['linkback'] =  flask.url_for("calc")
     return flask.render_template('page_not_found.html'), 404
 
+############### Work around for loading extra js plugins ##############
+@app.route("/moment")
+def moment():
+  app.logger.debug("Moment.js Page")
+  return flask.render_template('moment.js')
+
+@app.route("/collapse")
+def collapse():
+  app.logger.debug("Collapse.js Page")
+  return flask.render_template('collapse.js')
+
+@app.route("/transitions")
+def transitions():
+  app.logger.debug("Transition.js Page")
+  return flask.render_template('transition.js')
+
+@app.route("/bootdate")
+def bootdate():
+  app.logger.debug("Bootstrap Datepicker.js Page")
+  return flask.render_template('bootstrap-datetimepicker.min.js')
+
+@app.route("/boot")
+def boot():
+  app.logger.debug("Bootstrap min.js Page")
+  return flask.render_template('bootstrap.min.js')
+######################################################
 
 ###############
 #
@@ -68,7 +94,16 @@ def calc_times():
   """
   app.logger.debug("Got a JSON request");
   miles = request.args.get('miles', 0, type=int)
-  return jsonify(result=miles * 2)
+  # brevetDist = request.args.get('brevetDist', 0, type=int)
+
+  if miles in range(0,601):
+    return jsonify(result=miles/15)
+
+  elif miles in range(601,1000):
+    return jsonify(result=miles/11.428)
+
+  elif miles in range(1000, 1300):
+    return jsonify(result=miles/13.333)
  
 #################
 #
