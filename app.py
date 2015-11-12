@@ -53,27 +53,27 @@ def page_not_found(error):
     return flask.render_template('page_not_found.html'), 404
 
 ############### Work around for loading extra js plugins ##############
-@app.route("/moment")
+@app.route("/_moment")
 def moment():
   app.logger.debug("Moment.js Page")
   return flask.render_template('moment.js')
 
-@app.route("/collapse")
+@app.route("/_collapse")
 def collapse():
   app.logger.debug("Collapse.js Page")
   return flask.render_template('collapse.js')
 
-@app.route("/transitions")
+@app.route("/_transitions")
 def transitions():
   app.logger.debug("Transition.js Page")
   return flask.render_template('transition.js')
 
-@app.route("/bootdate")
+@app.route("/_bootdate")
 def bootdate():
   app.logger.debug("Bootstrap Datepicker.js Page")
   return flask.render_template('bootstrap-datetimepicker.min.js')
 
-@app.route("/boot")
+@app.route("/_boot")
 def boot():
   app.logger.debug("Bootstrap min.js Page")
   return flask.render_template('bootstrap.min.js')
@@ -85,7 +85,7 @@ def boot():
 #   These return JSON, rather than rendering pages. 
 #
 ###############
-@app.route("/_calc_times")
+@app.route("/_calc_close_times")
 def calc_times():
   """
   Calculates open/close times from miles, using rules 
@@ -105,6 +105,34 @@ def calc_times():
   elif miles in range(1000, 1300):
     return jsonify(result=miles/13.333)
  
+
+@app.route("/_calc_open_times")
+def calc_open_times():
+  """
+  Calculates open/close times from miles, using rules 
+  described at http://www.rusa.org/octime_alg.html.
+  Expects one URL-encoded argument, the number of miles. 
+  """
+  app.logger.debug("Got a JSON request");
+  miles = request.args.get('miles', 0, type=int)
+  # brevetDist = request.args.get('brevetDist', 0, type=int)
+
+  if miles in range(0,201):
+    # hours=miles/34
+    return jsonify(hours=miles//34)
+
+  elif miles in range(201,401):
+    return jsonify(hours=miles//32)
+
+  elif miles in range(401,601):
+    return jsonify(result=miles//30)
+
+  elif miles in range(601,1001):
+    return jsonify(result=miles//28)
+
+  elif miles in range(1001, 1301):
+    return jsonify(result=miles//26)
+
 #################
 #
 # Functions used within the templates

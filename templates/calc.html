@@ -19,11 +19,11 @@
 
 <!-- Bootstrap   -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.js"></script>
-<script src="/moment"></script>
-<script src="/transitions"></script>
-<script src="/collapse"></script>
-<script src="/boot"></script>
-<script src="/bootdate"></script>
+<script src="/_moment"></script>
+<script src="/_transitions"></script>
+<script src="/_collapse"></script>
+<script src="/_boot"></script>
+<script src="/_bootdate"></script>
 
 
   <!-- <script type="text/javascript"  -->
@@ -35,11 +35,9 @@
    <link rel="stylesheet" href="/static/css/calc.css" />
 
 <body>
+
 <!-- bootstrap requires a 'container' div around content -->
-
-<div class="container">
-
-<h1>ACP Brevet Opening/Closing times</h1>
+<div class="container" >
 
   <!--
   -- If there are any warnings or other messages from a prior
@@ -60,17 +58,20 @@
 {% endwith %}
 
 <!-- Design on bootstrap grid -->
-
-
-
-
-
-
 <br />
 <br />
 <form role="form" id="form-holder">
+    
+    <!-- App title -->
     <div class="row">
-        <div class='col-md-2'>
+        <div class="col-md-7">
+            <h1 align="center">ACP Brevet Opening/Closing times</h1>
+        </div>
+    </div>
+
+    <!-- Start date, brevet distance, and distance units -->
+    <div class="row">
+        <div class="col-md-3 col-sm-4 col-xs-4 top-buffer">
         <label>Start Date</label>
             <input type='text' class="form-control" id='datetimepicker' placeholder="Enter starting date"/>
         </div>
@@ -80,15 +81,15 @@
             });
         </script>
 
-        <div class="col-md-2">
-            <label>Brevet Distance</label>
+        <div class="col-md-2 col-sm-3 col-xs-3 top-buffer">
+            <label>Distance</label>
             <input type="text" class="form-control" name="brevetdist" placeholder="Enter total brevet distance" />
         </div>
 
-        <div class="col-md-2">
+        <div class="col-md-2 col-sm-3 col-xs-2 top-buffer">
             <label>Distance Units</label>
             <br />
-            <div class="col-md-4" style="padding-left: 0px;">
+            <div class="col-md-4 " style="padding-left: 0px;">
                 <input type="radio" class="form-control radio" name="distunits" checked="checked" value="km"><h6>Km</h6></input>
             </div>
             
@@ -98,89 +99,43 @@
         </div>
     </div>
 
-<div class="row top-buffer-head">
-    <div class="col-md-3">
-        <label>Location</label>
-        <input type="text" class="form-control" name="location" placeholder="Location (optional)" />
+    <!-- First default control point (Distance = 0) -->
+    <div class="row top-buffer-head">
+        <div class="col-md-3">
+            <label>Location</label>
+            <input type="text" class="form-control" name="location" placeholder="Location (optional)" />
+        </div>
+
+        <div class="col-md-2">
+            <label>Controle Distance</label>
+            <span class="form-control center-text" name="miles">
+            0
+            </span>
+        </div>
+
+        <div class="col-md-2">
+            <label>Times</label>
+            <span class="times form-control">Start:</span>
+            <span class="times form-control top-buffer-inner">Close:</span>
+        </div>
     </div>
 
-    <div class="col-md-2">
-        <label>Controle Distance</label>
-        <span class="form-control center-text" name="miles">
-        0
-        </span>
+    <!-- Second control point row -->
+    <div class="row top-buffer">
+        <div class="col-md-3">
+            <input type="text" class="form-control" name="location" placeholder="Location (optional)" />
+        </div>
+
+        <div class="col-md-2">
+            <input type="text" class="form-control center-text" id="miles" placeholder="Distance"/>
+        </div>
+
+        <div class="col-md-2">
+            <span class="opentimes form-control">Open:</span>
+            <span class="closetimes form-control top-buffer-inner">Close:</span>
+        </div>
     </div>
-
-    <div class="col-md-2">
-        <label>Times</label>
-        <span class="times form-control">Open:</span>
-        <span class="times form-control top-buffer-inner">Close:</span>
-    </div>
-</div>
-
-<div class="row top-buffer">
-    <div class="col-md-3">
-        <input type="text" class="form-control" name="location" placeholder="Location (optional)" />
-    </div>
-    
-    <div class="col-md-2">
-        <input type="text" class="form-control center-text" name="miles" placeholder="Distance"/>
-    </div>
-
-    <div class="col-md-2">
-        <span class="times form-control">Open:</span>
-        <span class="closetimes form-control top-buffer-inner">Close:</span>
-    </div>
-
-
-</div>
-
-
 </form>
-
-<!-- <form role="form">
-<div class="row">
-  <div class="col-md-2">
-    <input type="text" class="form-control"
-     name="miles" value="Distance in miles"/>
-  </div>
-  <div class="col-md-4">
-    <input type="text" class="form-control"
-      name="location" value="location" />
-  </div>
-  <div class="col-md-4">
-    <span class="times form-control">(times)</span>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-2">
-    <input type="text" class="form-control"
-     name="miles" value="Distance in miles"/>
-  </div>
-  <div class="col-md-4">
-    <input type="text" class="form-control"
-      name="location" value="location" />
-  </div>
-  <div class="col-md-4">
-    <span class="times form-control">(times)</span>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-2">
-    <input type="text" class="form-control"
-     name="miles" value="Distance in miles"/>
-  </div>
-  <div class="col-md-4">
-    <input type="text" class="form-control"
-      name="location" value="location" />
-  </div>
-  <div class="col-md-4">
-    <span class="times form-control">(times)</span>
-  </div>
-</div>
-</form> -->
 
 <script type="text/javascript">
 
@@ -188,62 +143,80 @@
 
   $(document).ready(function(){
    // Do the following when the page is finished loading
-
+        $i = 1;
       // When a field named 'miles' is changed ...
-      $('input[name="miles"]').change(
+      
+        $('#form-holder').on('click', "#miles", 
+              function(){
+                  var template = 
+                      '<div class="row top-buffer">'+
+                          '<div class="col-md-3">'+
+                              '<input type="text" class="form-control" name="location" placeholder="Location (optional)" />'+
+                          '</div>'+
+
+                          '<div class="col-md-2">'+
+                              '<input type="text" class="form-control center-text" id="miles" placeholder="Distance"/>'+
+                          '</div>'+
+
+                          '<div class="col-md-2">'+
+                              '<span class="opentimes form-control">Open:</span>'+
+                              '<span class="closetimes form-control top-buffer-inner">Close:</span>'+
+                          '</div>'+
+                      '</div>';
+
+                  var $par = $('#form-holder');
+        
+                  // A function so you can add more rows later, like say on a button press
+                  function addRow() {
+                      $par.append($(template));
+                  }
+
+                if ($i <= 8) {
+                  addRow();
+                  $i = $i+1;
+                }
+
+        $('#form-holder').on('change', "#miles", 
           // ... execute this function
-          function(){
+            function calc_times() {
               var e_miles = $(this).val();
 
               var target = $(this).parents(".row").find(".closetimes");
+              var target2 = $(this).parents(".row").find(".opentimes");
 
               // DEBUG: How do I replace the 'times' field?
               // alert("Content of the field I want to change: " +
               //   target.html());
 
               // AJAX request
-              $.getJSON($SCRIPT_ROOT + '/_calc_times',
+              $.getJSON($SCRIPT_ROOT + '/_calc_close_times',
                   // The object to pass to the server
                   { miles: e_miles },
                   // The function to call with the response
                   function(data) {
                      var times = data.result;
                      // alert("Got a response: " +  times);
-                     target.text(times);
+                     target.text("Close: " + times);
                   }); // End of the call to getJSON
 
-          var template = 
-            '<div class="row top-buffer">'+
-                '<div class="col-md-3">'+
-                    '<input type="text" class="form-control top-buffer" name="location" placeholder="Location (optional)" />'+
-                '</div>'+
-                '<div class="col-md-2">'+
-                    '<input type="text" class="times form-control" name="miles" placeholder="Distance"/>'+
-                '</div>'+
-            
-                '<div class="col-md-2">'+
-                    '<span class="times form-control">Open: </span>'+
-                    '<span class="times form-control top-buffer-inner">Close: </span>'+
-                '</div>'+
-            '</div>';
-        var $par = $('#form-holder');
-        
-        // A function so you can add more rows later, like say on a button press
-        function addRow() {
-            $par.append($(template));
-        }
-        
-        addRow();
-        // Start with 2 rows default
-        // var num_rows = 1;
-        // for (var i = 0; i < num_rows; i++) {
-        //     addRow();
-        // }
+              // AJAX request
+              $.getJSON($SCRIPT_ROOT + '/_calc_open_times',
+                  // The object to pass to the server
+                  { miles: e_miles },
+                  // The function to call with the response
+                  function(data) {
+                     var hours = data.hours;
+                     var mins = data.mins;
+                     // alert("Got a response: " +  times);
+                     target2.text("Open: " + hours);
+                  }); // End of the call to getJSON
 
 
-          });  // End of the function to be called when field changes
-              
+          
+                  // calc_times();
+          }); // End of the function to be called when field changes
 
+          });  // End of the function to be called when field receives input
      });   // end of what we do on document ready
 
 </script>
