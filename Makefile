@@ -20,8 +20,8 @@ install:
 	echo "pyvenv without PIP to work around ubuntu bug"
 	$(PYVENV) --without-pip env
 	echo ""
-	(.  env2/bin/activate; curl https://bootstrap.pypa.io/get-pip.py | python)
-	(.  env2/bin/activate; pip install -r requirements.txt)
+	(.  env/bin/activate; curl https://bootstrap.pypa.io/get-pip.py | python)
+	(.  env/bin/activate; pip install -r requirements.txt)
 
 dist:
 	pip freeze >requirements.txt
