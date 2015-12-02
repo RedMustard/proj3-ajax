@@ -1,4 +1,7 @@
-# proj3-ajax
+# URL on ix
+http://ix.cs.uoregon.edu/~ttb/CIS399/htbin/proj3-ajax/app.cgi/
+
+## proj3-ajax
 Reimplement the RUSA ACP controle time calculator with flask and ajax
 
 ## ACP controle times
